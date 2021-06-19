@@ -3,10 +3,12 @@ import { useParams } from "react-router";
 import Rating from "./Rating";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const ProductScreen = ({match}) => {
   const { id } = useParams();
   const [product, setProduct] = useState([])
+  const history = useHistory()
 
   useEffect(() => {
     async function getProductDate(){
@@ -14,17 +16,17 @@ const ProductScreen = ({match}) => {
       setProduct(data)
     }
     getProductDate()
-  },[product, id])
+  },[id])
 
   return (
     <>
       <div className="container-fuild">
         <div className="row">
           <div className="col-md-10 mx-auto">
+          <button onClick={() => { history.goBack() }} className="btn btn-primary buttonsize" >Go Back</button>
             <div className="row screen">
               <div className="col-md-6 col-10 pt-5 pt-lg-0 order-2 order-lg-1 text-center productscreen-img">
-
-                <img src={product.imageurl} alt="....." />
+                <img src={product.image} alt="....." />
                 <h5 className="my-3">{product.name}</h5> <br />
                         <Rating rating={product.rating} />
               </div>

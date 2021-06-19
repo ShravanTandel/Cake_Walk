@@ -29,7 +29,7 @@ export default function Products(props) {
         <NavLink to={`products/${props.id}`}>
         <CardMedia
           className={classes.media}
-          image={props.imageurl}
+          image={props.image}
           title="Contemplative Reptile"
           />
           </NavLink>
@@ -38,8 +38,7 @@ export default function Products(props) {
             {props.name}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            {props.description}
           </Typography>
         </CardContent>
       </CardActionArea>

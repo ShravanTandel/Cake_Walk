@@ -114,6 +114,11 @@ body{
     margin-bottom: 5px;
 }
 
+.buttonsize {
+    width: 100px;
+    margin-left: 16px;
+}
+
 @media all and (max-width: 500px){
     .header-img{
         text-align: center;

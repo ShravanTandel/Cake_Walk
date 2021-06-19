@@ -15,7 +15,8 @@ const Menu = () => {
     },[])
     const fproduct = (val) => {
         return(
-            <Products key={val.id} name={val.name} rating={val.rating} id={val.id} imageurl={val.imageurl}/>
+            <Products key={val.id} name={val.name} description={val.description} offer={val.offer} 
+            available={val.available} image={val.image} rating={val.rating} createdOn={val.createdOn} category={val.category} id={val.id} />
         )
     }
     return (
