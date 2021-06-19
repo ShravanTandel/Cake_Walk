@@ -21,9 +21,6 @@ def getProducts(request):
 
 @api_view(['GET'])
 def getProduct(request, id):
-    product = None
-    for i in Productdata.Products:
-        if i["id"] == id:
-            product = i
-            break
-    return Response(product)
+    product = Product.objects.get(id=id)
+    serializer = ProductSerializer(product, many=False)
+    return Response(serializer.data)
