@@ -14,7 +14,7 @@ const ProductScreen = ({match}) => {
       setProduct(data)
     }
     getProductDate()
-  },[])
+  },[product, id])
 
   return (
     <>
