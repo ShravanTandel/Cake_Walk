@@ -24,7 +24,7 @@ class Product(models.Model):
 
 class Pricing(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size = models.IntegerField(null=False, blank = False)
+    size = models.DecimalField(max_digits=5,decimal_places=1, null=False, blank = False)
     price = models.IntegerField(null=False, blank = False)
 
     def __str__(self) -> str:
