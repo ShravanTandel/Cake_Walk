@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import web from "../images/Cake_image 1.png";
+// import web from "../images/Cake_image 1.png";
+import web from "../images/Nice_Image.png";
 // import Menu from './Menu'
 
 const Home = () => {

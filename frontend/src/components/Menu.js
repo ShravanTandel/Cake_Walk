@@ -1,18 +1,19 @@
 import React from 'react'
 import Products from './Products/Products'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { listProducts } from '../actions/productActions'
+import Loader from './LoaderAndError/Loader'
+import Error from './LoaderAndError/Error'
 
 const Menu = () => {
-    const [product, setProduct] = useState([]);
+    const dispatch = useDispatch();
+    const productlist = useSelector(state => state.productList);
+    const { error, loading, products } = productlist;
 
     useEffect(() => {
-        async function getProductDate(){
-            const {data} = await axios.get('http://127.0.0.1:8000/api/products/')
-            setProduct(data)
-        }
-        getProductDate()
-    },[])
+        dispatch(listProducts())
+    },[dispatch])
     const fproduct = (val) => {
         return(
             <Products key={val.id} name={val.name} description={val.description} offer={val.offer} 
@@ -30,7 +31,9 @@ const Menu = () => {
                     <div className="col-10 mx-auto">
                         <div className="row gy-5">
                                 {
-                                    product.map(fproduct)
+                                    loading ? <Loader />
+                                    :error ? <Error error={error} />
+                                    :products.map(fproduct)
                                 }
                         </div>
                     </div>

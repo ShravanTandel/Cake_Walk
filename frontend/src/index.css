@@ -70,7 +70,8 @@ body{
 }
 
 .header-img img{
-    width: 500px;
+    width: 700px;
+    text-align: center;
 }
 
 #header .animated{
@@ -117,6 +118,13 @@ body{
 .buttonsize {
     width: 100px;
     margin-left: 16px;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    display: block;
 }
 
 @media all and (max-width: 500px){

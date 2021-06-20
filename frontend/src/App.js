@@ -27,7 +27,7 @@ const App = () => {
       <Route path="/products/:id" component={ProductScreen}/>
       <Route component={Error}/>
     </Switch>
-    <Footer />
+    {/* <Footer /> */}
     </>
   )
 }
