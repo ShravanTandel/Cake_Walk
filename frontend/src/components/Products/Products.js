@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -26,13 +26,13 @@ export default function Products(props) {
         <div className="col-md-3 col-10 mx-auto">
     <Card className={classes.root}>
       <CardActionArea>
-        <NavLink to={`products/${props.id}`}>
+        <Link to={`menu/products/${props.id}`}>
         <CardMedia
           className={classes.media}
           image={props.image}
           title="Contemplative Reptile"
           />
-          </NavLink>
+          </Link>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.name}
@@ -43,11 +43,11 @@ export default function Products(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-          <NavLink to={`products/${props.id}`}>
+          <Link to={`menu/products/${props.id}`}>
         <Button size="small" color="primary">
           Order Now
         </Button>
-          </NavLink>
+          </Link>
        <Rating rating={props.rating}/>
       </CardActions>
     </Card>

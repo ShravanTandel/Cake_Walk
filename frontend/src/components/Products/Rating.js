@@ -4,7 +4,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 const Rating = (props) => {
-    if(props.rating === 5){
+    if(props.rating == 5.00){
     return (
         <>
             <StarIcon/>
@@ -15,7 +15,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating > 4 && props.rating < 5){
+    if(props.rating > 4.00 && props.rating < 5.00){
     return (
         <>
             <StarIcon/>
@@ -26,7 +26,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating === 4){
+    if(props.rating == 4){
     return (
         <>
             <StarIcon/>
@@ -48,7 +48,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating === 3 || props.rating > 2.5){
+    if(props.rating == 3 || props.rating > 2.5){
     return (
         <>
             <StarIcon/>
@@ -70,7 +70,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating === 2){
+    if(props.rating == 2){
     return (
         <>
             <StarIcon/>
@@ -92,7 +92,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating === 1){
+    if(props.rating == 1){
     return (
         <>
             <StarIcon/>

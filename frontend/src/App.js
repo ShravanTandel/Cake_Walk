@@ -5,18 +5,21 @@ import Offers from './components/Offers'
 import Cart from './components/Cart'
 import About from './components/About'
 import Error from './components/Error'
-import Navbar from './components/Navbar'
+import Navbar1 from './components/Navbar1'
 import { Switch, Route } from 'react-router'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import ContactUs from './components/ContactUs'
 import Footer from './components/Footer'
 import ProductScreen from './components/Products/ProductScreen'
+import { ToastContainer } from 'react-toastify'
+import ScrollToTop from './components/ScrollToTop'
 
 
 const App = () => {
   return (
     <>
-    <Navbar />
+    <Navbar1 />
+    <ScrollToTop />
     <Switch>
       <Route exact path="/" component={Home}/>
       <Route exact path="/menu" component={Menu}/>
@@ -24,10 +27,11 @@ const App = () => {
       <Route exact path="/cart" component={Cart}/>
       <Route exact path="/about" component={About}/>
       <Route exact path="/contactus" component={ContactUs}/>
-      <Route path="/products/:id" component={ProductScreen}/>
+      <Route path="/menu/products/:id" component={ProductScreen}/>
       <Route component={Error}/>
     </Switch>
-    {/* <Footer /> */}
+    <ToastContainer />
+    <Footer />
     </>
   )
 }

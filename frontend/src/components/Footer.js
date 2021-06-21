@@ -3,9 +3,9 @@ import React from 'react'
 const Footer = () => {
     return (
         <>
-            <footer>
+            <footer className="sticky">
                 <div className="container py-3 text-center">
-                    <h5 style={{ color: 'gray', fontSize: '16px'}}>Copyright &copy; Cake_Walk</h5>
+                    <h5 style={{ color: 'gray', fontSize: '16px', position: 'sticky', top: '100%'}}>Copyright &copy; Cake_Walk</h5>
                     </div>
             </footer>
         </>

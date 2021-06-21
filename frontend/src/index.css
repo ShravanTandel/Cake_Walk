@@ -8,6 +8,7 @@
 }
 
 body{
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
@@ -70,7 +71,7 @@ body{
 }
 
 .header-img img{
-    width: 700px;
+    width: 670px;
     text-align: center;
 }
 
@@ -106,7 +107,7 @@ body{
 }
 
 .productscreen-img img {
-    width: 450px;
+    width: 700px;
     height: 450px;
 }
 
@@ -127,18 +128,23 @@ body{
     display: block;
 }
 
+.sticky{
+    position: sticky;
+    top: 100%;
+}
+
 @media all and (max-width: 500px){
     .header-img{
         text-align: center;
     }
     
     .header-img img{
-        width: 250px;
+        width: 300px;
     }
 
     #header h1{
         margin: 0 0 10px 0;
-        font-size: 30px;
+        font-size: 35px;
         font-weight: 500;
         color: black;
     }
