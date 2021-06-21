@@ -4,7 +4,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 const Rating = (props) => {
-    if(props.rating == 5.00){
+    if(Number(props.rating) === 5.00){
     return (
         <>
             <StarIcon/>
@@ -15,7 +15,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating > 4.00 && props.rating < 5.00){
+    if(Number(props.rating) > 4.00 && Number(props.rating) < 5.00){
     return (
         <>
             <StarIcon/>
@@ -26,7 +26,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating == 4){
+    if(Number(props.rating) === 4){
     return (
         <>
             <StarIcon/>
@@ -37,7 +37,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating > 3 && props.rating < 4){
+    if(Number(props.rating) > 3 && Number(props.rating) < 4){
     return (
         <>
             <StarIcon/>
@@ -48,7 +48,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating == 3 || props.rating > 2.5){
+    if(Number(props.rating) === 3 || Number(props.rating) > 2.5){
     return (
         <>
             <StarIcon/>
@@ -59,7 +59,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating > 2 && props.rating < 3){
+    if(Number(props.rating) > 2 && Number(props.rating) < 3){
     return (
         <>
             <StarIcon/>
@@ -70,7 +70,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating == 2){
+    if(Number(props.rating) === 2){
     return (
         <>
             <StarIcon/>
@@ -81,7 +81,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating > 1 && props.rating < 2){
+    if(Number(props.rating) > 1 && Number(props.rating) < 2){
     return (
         <>
             <StarIcon/>
@@ -92,7 +92,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating == 1){
+    if(Number(props.rating) === 1){
     return (
         <>
             <StarIcon/>
@@ -103,7 +103,7 @@ const Rating = (props) => {
         </>
     )
 }
-    if(props.rating > 0 && props.rating < 1){
+    if(Number(props.rating) > 0 && Number(props.rating) < 1){
     return (
         <>
             <StarHalfIcon/>

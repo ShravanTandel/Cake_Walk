@@ -24,6 +24,7 @@ const ProductScreen = ({ match }) => {
   const productPricings = useSelector((state) => state.productPricings);
   const { error, loading, product } = productDetails;
   const { error1, loading1, pricing } = productPricings;
+  // const { error1, loading1, pricing } = productPricings;
   const [size, setSize] = useState(0);
   const [price, setPrice] = useState(0);
   const [ pricingObject1, setPricingObject1 ] = useState({});
@@ -97,7 +98,10 @@ const ProductScreen = ({ match }) => {
                     </ul>
                   </div>
                 </div>
-                <div className="col-md-6 col-10 pt-5 pt-lg-0 order-2 order-lg-1 productscreen-img">
+                { loading1 ? <Loader />
+                : error1 ? <Message messagetype="danger" >{ error }</Message>
+                :
+                (<div className="col-md-6 col-10 pt-5 pt-lg-0 order-2 order-lg-1 productscreen-img">
                   <ul className="list-group">
                     <li className="list-group-item">
                       <h3>{product.name}</h3>
@@ -177,7 +181,7 @@ const ProductScreen = ({ match }) => {
                       </button>
                     </li>
                   </ul>
-                </div>
+                </div>)}
               </div>
             )}
           </div>
