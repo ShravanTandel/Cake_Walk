@@ -10,9 +10,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../LoaderAndError/Loader";
 import Message from "../LoaderAndError/Message";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { addToCart } from "../../actions/cartActions";
 import ErrorIcon from "@material-ui/icons/Error";
 
@@ -24,27 +24,34 @@ const ProductScreen = ({ match }) => {
   const productPricings = useSelector((state) => state.productPricings);
   const { error, loading, product } = productDetails;
   const { error1, loading1, pricing } = productPricings;
-  const [size, setSize] = useState(1.0)
-  const [price, setPrice] = useState(0)
-  const [productid, setProductid] = useState()
+  const [size, setSize] = useState(0);
+  const [price, setPrice] = useState(0);
+  const [ pricingObject1, setPricingObject1 ] = useState({});
+  const quantity = [1, 2, 3, 4, 5];
+  const [ qty, setQty ] = useState(0);
 
   const sizeChange = (e) => {
-    setSize(e.target.value)
-      const pricingObject = pricing.find((pricingO) => {
-      return pricingO.size === e.target.value
-    })
-    setPrice(pricingObject.price)
-    setProductid(pricingObject.product)
-  }
+    setSize(e.target.value);
+    const pricingObject = pricing.find((pricingO) => {
+      return pricingO.size === e.target.value;
+    });
+    setPricingObject1(pricingObject);
+    setPrice(pricingObject.price);
+    setQty(0)
+  };
 
+  const quantityChange = (e) => {
+    setQty(e.target.value);
+    setPrice(pricingObject1.price * (e.target.value))
+  }
   useEffect(() => {
     dispatch(listProductDetails(id));
     dispatch(listProductPricings(id));
   }, [dispatch, id]);
-  
+
   const addToCartHalder = () => {
-    dispatch(addToCart(productid,size,price));
-    history.push("/cart")
+    dispatch(addToCart(pricingObject1.product, size, price, qty));
+    history.push("/cart");
     toast.success(`Added to the Cart, go to Menu select to order more`, {
       position: "top-right",
       autoClose: 5000,
@@ -54,7 +61,7 @@ const ProductScreen = ({ match }) => {
       draggable: true,
       progress: undefined,
     });
-  }
+  };
 
   return (
     <>
@@ -64,17 +71,19 @@ const ProductScreen = ({ match }) => {
             <div
               onClick={() => {
                 history.goBack();
-
               }}
-              className="buttonsize"
+              className="btn btn-light buttonsize"
             >
-              <ArrowBackIosIcon />
+              {/* <ArrowBackIosIcon />Go Back */}
               Go Back
             </div>
             {loading ? (
               <Loader />
             ) : error ? (
-              <Message messagetype="danger"><ErrorIcon />{error}</Message>
+              <Message messagetype="danger">
+                <ErrorIcon />
+                {error}
+              </Message>
             ) : (
               <div className="row screen">
                 <div className="col-md-6 col-10 pt-5 pt-lg-0 order-2 order-lg-1 text-center productscreen-img">
@@ -82,8 +91,8 @@ const ProductScreen = ({ match }) => {
                   <div className="my-3">
                     <ul className="list-group">
                       <li className="list-group-item">
-                          <strong>Description: </strong>
-                          <p>{product.description}</p>
+                        <strong>Description: </strong>
+                        <p>{product.description}</p>
                       </li>
                     </ul>
                   </div>
@@ -99,37 +108,73 @@ const ProductScreen = ({ match }) => {
                     <li className="list-group-item">
                       <div className="row">
                         <div className="col-sm-6">
-                          <h5><strong>Price:</strong></h5>
+                          <h5>
+                            <strong>Price:</strong>
+                          </h5>
                         </div>
                         <div className="col-sm-6">
-                          {
-                            price === 0 ? (<h5>Choose quantity to know price</h5>) : price
-                          }
+                          {price === 0 ? (
+                            <h5>Choose quantity to know price</h5>
+                          ) : (
+                            price
+                          )}
                         </div>
                       </div>
                     </li>
                     <li className="list-group-item">
                       <div className="row">
                         <div className="col-md-6">
-                          <h5><strong>Quantity: </strong></h5>
+                          <h5>
+                            <strong>Size: </strong>
+                          </h5>
                         </div>
                         <div className="col-md-6">
-  
-                            <select className="form-select" value={size} onChange={sizeChange}>
-                              {pricing.map(
-                                (x) => (
-                                  <option key={x.id} value={x.size}>
-                                  {x.size} kg
-                                  </option>
-                                )
-                              )}
-                            </select>
-                          
+                          <select
+                            className="form-select"
+                            value={size}
+                            onChange={sizeChange}
+                          >
+                            <option></option>
+                            {pricing.map((x) => (
+                              <option key={x.id} value={x.size}>
+                                {x.size} kg
+                              </option>
+                            ))}
+                          </select>
                         </div>
                       </div>
                     </li>
                     <li className="list-group-item">
-                      <button onClick={addToCartHalder} disabled={ price === 0 } className="btn btn-dark">Add to Cart</button>
+                      <div className="row">
+                        <div className="col-md-6">
+                          <h5>
+                            <strong>Quantity: </strong>
+                          </h5>
+                        </div>
+                        <div className="col-md-6">
+                          <select
+                            className="form-select"
+                            value={qty}
+                            onChange={quantityChange}
+                          >
+                            <option></option>
+                            {quantity.map((x) => (
+                              <option key={x} value={x}>
+                                {x}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li className="list-group-item">
+                      <button
+                        onClick={addToCartHalder}
+                        disabled={price === 0}
+                        className="btn btn-dark"
+                      >
+                        Add to Cart
+                      </button>
                     </li>
                   </ul>
                 </div>
