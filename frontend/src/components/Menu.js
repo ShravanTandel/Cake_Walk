@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions'
 import Loader from './LoaderAndError/Loader'
 import Message from './LoaderAndError/Message'
+import ErrorIcon from "@material-ui/icons/Error";
 
 const Menu = () => {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Menu = () => {
                         <div className="row gy-5">
                                 {
                                     loading ? <Loader />
-                                    :error ? <Message message={error} messagetype="danger"/>
+                                    :error ? <Message messagetype="danger"><ErrorIcon />{error}</Message>
                                     :products.map(fproduct)
                                 }
                         </div>

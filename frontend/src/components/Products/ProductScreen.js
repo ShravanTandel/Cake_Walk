@@ -14,6 +14,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addToCart } from "../../actions/cartActions";
+import ErrorIcon from "@material-ui/icons/Error";
 
 const ProductScreen = ({ match }) => {
   const { id } = useParams();
@@ -73,7 +74,7 @@ const ProductScreen = ({ match }) => {
             {loading ? (
               <Loader />
             ) : error ? (
-              <Message message={error} messagetype="danger" />
+              <Message messagetype="danger"><ErrorIcon />{error}</Message>
             ) : (
               <div className="row screen">
                 <div className="col-md-6 col-10 pt-5 pt-lg-0 order-2 order-lg-1 text-center productscreen-img">

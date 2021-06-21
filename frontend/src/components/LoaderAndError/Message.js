@@ -1,7 +1,6 @@
-import ErrorIcon from "@material-ui/icons/Error";
 import React from "react";
 
-const Message = ({message,messagetype}) => {
+const Message = ({messagetype, children}) => {
   return (
     <>
     {
@@ -10,18 +9,14 @@ const Message = ({message,messagetype}) => {
         className="alert alert-danger d-flex align-items-center"
         role="alert"
       >
-        <div>
-          <ErrorIcon /> {message}
-        </div>
+        {children}
       </div>
       ):(
         <div
-        className="alert alert-sucess d-flex align-items-center"
+        className="alert alert-success d-flex align-items-center"
         role="alert"
       >
-        <div>
-          {message}
-        </div>
+        {children}
       </div>
       )
     }
