@@ -2,26 +2,28 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Message from "./LoaderAndError/Message";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { addToCart } from "../actions/cartActions";
+import { removeFromCart } from "../actions/cartActions";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  const quantity = [
-    { id: 1, num: 1 },
-    { id: 2, num: 2 },
-    { id: 3, num: 3 },
-    { id: 4, num: 4 },
-    { id: 5, num: 5 },
-  ];
-  const [num, setNum] = useState();
+  const dispatch = useDispatch()
 
-  const numChange = (e) => {
-    setNum(e.target.value);
-    console.log(num);
-  };
+  const removeItemFromCart = (id) => {
+        dispatch(removeFromCart(id));
+        toast.error('Product Removed from cart', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+  }
   return (
     <>
       <div className="container-fuild">
@@ -65,7 +67,7 @@ const Cart = () => {
                               <NavLink to={`/menu/products/${item.product}`} >Update</NavLink>
                             </div>
                             <div className="col-sm-1 carti">
-                              <button className="btn btn-light"><DeleteIcon /></button>
+                              <button className="btn btn-light" onClick={ () => { removeItemFromCart(item.product)  }}><DeleteIcon /></button>
                             </div>
                           </div>
                         </li>
@@ -80,8 +82,8 @@ const Cart = () => {
                           <h1><>Total Price:</>{ cartItems.reduce((acc, item) => acc + item.price, 0)}</h1>
                       </li>
                       <li className="list-group-item">
-                          <strong><label for="address">Your Address: </label></strong><br />
-                          <textarea rows="4" cols="30" to="address" ></textarea>
+                          <strong>Your Address: </strong><br />
+                          <textarea rows="4" cols="30" ></textarea>
                       </li>
                       <li className="list-group-item">
                           <strong>Phone: </strong>
@@ -101,55 +103,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-{
-  /* <table className="table">
-                    <thead>
-                        <th>Product Image</th>
-                        <th>Name</th>
-                        <th>Qty</th>
-                        <th>Size</th>
-                        <th>Price</th>
-                        <th></th>
-                    </thead>
-                    <tbody>
-                      {cartItems.map((item) => {
-                        return (
-                          <tr key={item.product}>
-                            <td data-label="S.No" className="cartimage">
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                // width="80px"
-                                // height="70px"
-                              />
-                            </td>
-                            <td data-label="S.No">
-                              <strong>{item.name}</strong>
-                            </td>
-                            <td data-label="S.No">
-                              <select
-                                className="form-select myselect"
-                                value={num}
-                                onChange={numChange}
-                              >
-                                {quantity.map((x) => (
-                                  <option key={x.id} value={x.num}>
-                                    {x.num}
-                                  </option>
-                                ))}
-                              </select>
-                            </td>
-                            <td data-label="S.No">
-                              <strong>{item.qty}</strong>
-                            </td>
-                            <td data-label="S.No">
-                              <strong>{item.price}</strong>
-                            </td>
-                            <td><DeleteIcon /></td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table> */
-}

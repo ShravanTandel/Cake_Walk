@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { useSelector } from "react-redux";
 
 const Navbar1 = () => {
   const StyledBadge = withStyles((theme) => ({
@@ -14,6 +15,9 @@ const Navbar1 = () => {
       padding: "0 0px",
     },
   }))(Badge);
+
+  const cart = useSelector(state => state.cart)
+  const { cartItems } = cart
 
   return (
     <>
@@ -43,7 +47,7 @@ const Navbar1 = () => {
                 </LinkContainer>
                 <LinkContainer to="/cart">
                   <Nav.Link>
-                    <StyledBadge badgeContent={4} color="secondary">
+                    <StyledBadge badgeContent={ cartItems.length } color="secondary">
                       <ShoppingCartIcon />
                     </StyledBadge>
                   </Nav.Link>

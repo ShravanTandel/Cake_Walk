@@ -52,7 +52,7 @@ const ProductScreen = ({ match }) => {
   const addToCartHalder = () => {
     dispatch(addToCart(pricingObject1.product, size, price, qty));
     history.push("/cart");
-    toast.success(`Added to the Cart, go to Menu select to order more`, {
+    toast.success(`Added to the Cart, Go to Menu section to order more`, {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -170,7 +170,7 @@ const ProductScreen = ({ match }) => {
                     <li className="list-group-item">
                       <button
                         onClick={addToCartHalder}
-                        disabled={price === 0}
+                        disabled={price === 0 || qty === 0}
                         className="btn btn-dark"
                       >
                         Add to Cart
