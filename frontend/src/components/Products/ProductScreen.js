@@ -103,7 +103,7 @@ const ProductScreen = ({ match }) => {
                 :
                 (<div className="col-md-6 col-10 pt-5 pt-lg-0 order-2 order-lg-1 productscreen-img">
                   <ul className="list-group">
-                    <li className="list-group-item">
+                    <li className="list-group-item" style={{ backgroundColor: "black", color: "white" }}>
                       <h3>{product.name}</h3>
                     </li>
                     <li className="list-group-item">

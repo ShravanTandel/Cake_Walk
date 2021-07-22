@@ -30,7 +30,7 @@ export default function Products(props) {
         <CardMedia
           className={classes.media}
           image={props.image}
-          title="Contemplative Reptile"
+          title="Order Now"
           />
           </Link>
         <CardContent>

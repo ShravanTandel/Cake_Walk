@@ -78,8 +78,8 @@ const Cart = () => {
               </div>
               <div className="col-md-4">
                   <ul className="list-group">
-                      <li className="list-group-item">
-                          <h1><>Total Price:</>{ cartItems.reduce((acc, item) => acc + item.price, 0)}</h1>
+                      <li className="list-group-item" style={{ backgroundColor: "black", color: "white" }}>
+                          <h1 style={{ backgroundColor: "black", color: "white" }}><>Total Price:</>{ cartItems.reduce((acc, item) => acc + item.price, 0)}</h1>
                       </li>
                       <li className="list-group-item">
                           <strong>Your Address: </strong><br />
