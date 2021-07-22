@@ -11,3 +11,15 @@
   - Admin item, user and order management system
   - Realtime delivery updates
   - Authetication with JWT
+
+## Technologies Used
+  
+  - Backend
+    - Django - Web framework
+    - Python - Programming language
+  
+  - Frontend
+    - ReactJS - Library
+    - Javascript - Programming language
+    - Redux - State management
+    - Bootstrap - Styling framework
