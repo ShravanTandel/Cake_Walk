@@ -5,4 +5,9 @@
 ## Features
 
   - Product search feature
-  -
+  - Add to cart
+  - User profile with order
+  - Product review and rating
+  - Admin item, user and order management system
+  - Realtime delivery updates
+  - Authetication with JWT
