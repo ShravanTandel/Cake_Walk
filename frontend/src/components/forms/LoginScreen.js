@@ -54,7 +54,7 @@ const LoginScreen=({location, history})=>{
                 <ErrorIcon />
                 {error}
               </Message>}
-                <TextField label='Username' placeholder='Enter username' value = {email} onChange = {(e) => setEmail(e.target.value) } fullWidth required/><br></br><br></br>
+                <TextField label='Email' placeholder='Enter username' value = {email} onChange = {(e) => setEmail(e.target.value) } fullWidth required/><br></br><br></br>
                 <TextField label='Password' placeholder='Enter password' value = {password} onChange = {(e) => setPassword(e.target.value) } type='password' fullWidth required/>
                 <br></br><br></br>
                 <Button type='submit' color='primary' variant="contained" style={btnstyle} onClick = {submitHandler} fullWidth>Sign in</Button><br></br>
@@ -63,7 +63,7 @@ const LoginScreen=({location, history})=>{
                         Forgot password ?
                 </Link>
                 </Typography><br></br>
-                <Typography > Do you have an account ?
+                <Typography > Don't you have an account ?
                      <Link to = 
                      {redirect ? `/register?redirect=${redirect}` : `/register`} >
                        Sign Up

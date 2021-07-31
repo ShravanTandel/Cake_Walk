@@ -14,6 +14,7 @@ import ProductScreen from './components/Products/ProductScreen'
 import { ToastContainer } from 'react-toastify'
 import ScrollToTop from './components/ScrollToTop'
 import LoginScreen from './components/forms/LoginScreen'
+import RegisterScreen from './components/forms/RegisterScreen'
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
       <Route exact path="/about" component={About}/>
       <Route exact path="/contactus" component={ContactUs}/>
       <Route exact path="/login" component={LoginScreen}/>
+      <Route exact path="/register" component={RegisterScreen}/>
       <Route path="/menu/products/:id" component={ProductScreen}/>
       <Route component={Error}/>
     </Switch>

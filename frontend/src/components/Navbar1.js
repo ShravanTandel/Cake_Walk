@@ -2,9 +2,10 @@ import React from "react";
 import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../actions/userActions";
 
 const Navbar1 = () => {
   const StyledBadge = withStyles((theme) => ({
@@ -18,6 +19,15 @@ const Navbar1 = () => {
 
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart
+
+  const userLogin = useSelector(state => state.userLogin)
+  const { userInfo } = userLogin
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout())
+  }
 
   return (
     <>
@@ -39,15 +49,23 @@ const Navbar1 = () => {
                 <LinkContainer to="/menu">
                   <Nav.Link>Menu</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/menu">
-                  <Nav.Link>Register</Nav.Link>
-                </LinkContainer>
-                <LinkContainer to="/login">
-                  <Nav.Link>Log In</Nav.Link>
-                </LinkContainer>
                 <LinkContainer to="/contactus">
                   <Nav.Link>Contact</Nav.Link>
                 </LinkContainer>
+                {userInfo ? (
+                                <NavDropdown title="Profile" id='username'>
+                                    <LinkContainer to='/profile'>
+                                        <NavDropdown.Item>User Details</NavDropdown.Item>
+                                    </LinkContainer>
+
+                                    <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+
+                                </NavDropdown>
+                            ) : (
+                                    <LinkContainer to='/login'>
+                                        <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
+                                    </LinkContainer>
+                                )}
                 <LinkContainer to="/cart">
                   <Nav.Link>
                     <StyledBadge badgeContent={ cartItems.length } color="secondary">
