@@ -39,11 +39,14 @@ const Navbar1 = () => {
                 <LinkContainer to="/menu">
                   <Nav.Link>Menu</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/offers">
-                  <Nav.Link>Offers</Nav.Link>
+                <LinkContainer to="/menu">
+                  <Nav.Link>Register</Nav.Link>
+                </LinkContainer>
+                <LinkContainer to="/login">
+                  <Nav.Link>Log In</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/contactus">
-                  <Nav.Link>Contact Us</Nav.Link>
+                  <Nav.Link>Contact</Nav.Link>
                 </LinkContainer>
                 <LinkContainer to="/cart">
                   <Nav.Link>
