@@ -6,6 +6,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { removeFromCart } from "../actions/cartActions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { createOrder } from "../actions/orderActions";
+import { useEffect } from "react";
+import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 
 const Cart = ({history}) => {
   const cart = useSelector((state) => state.cart);
@@ -15,10 +18,17 @@ const Cart = ({history}) => {
   const [ address, setAddress ] = useState("")
   const [ phone, setPhone ] = useState("")
 
-  const orderSubmitHandler = () => {
-    console.log(address, phone)
-    history.push("/userorder")
-  }
+  const orderCreate = useSelector(state => state.orderCreate)
+    const { order, error, success } = orderCreate
+
+    cart.totalPrice = cart.cartItems.reduce((acc, item) => acc + item.price, 0)
+
+    useEffect(() => {
+      if (success) {
+          history.push(`/${order.id}`)
+          dispatch({ type: ORDER_CREATE_RESET })
+      }
+  }, [success, history])
 
   const removeItemFromCart = (id) => {
         dispatch(removeFromCart(id));
@@ -31,6 +41,16 @@ const Cart = ({history}) => {
             draggable: true,
             progress: undefined,
             });
+  }
+
+  const orderSubmitHandler = (e) => {
+    e.preventDefault()
+    dispatch(createOrder({
+      totalprice: cart.totalPrice,
+      phone: phone,
+      address: address,
+      orderItems: cart.cartItems,
+    }))
   }
   return (
     <>
