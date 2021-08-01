@@ -45,10 +45,17 @@ const ProductScreen = ({ match }) => {
     setQty(e.target.value);
     setPrice(pricingObject1.price * (e.target.value))
   }
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
   useEffect(() => {
+    if( !userInfo )
+    {
+      history.push(`/login?redirect=/menu`)
+    }
     dispatch(listProductDetails(id));
     dispatch(listProductPricings(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, userInfo]);
 
   const addToCartHalder = () => {
     dispatch(addToCart(pricingObject1.product, size, price, qty));
