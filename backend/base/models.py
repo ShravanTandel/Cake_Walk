@@ -56,7 +56,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     price = models.IntegerField(null=False, blank=False)
     quantity = models.IntegerField(null=False, blank=False)
-    size = models.IntegerField(null=False, blank=False)
+    size = models.DecimalField(max_digits=5, null=False, decimal_places=1, blank=False)
     product = models.CharField(max_length=300,null=False, blank=False)
 
     def __str__(self):
