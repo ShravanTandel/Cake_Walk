@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -7,7 +7,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../actions/userActions";
 
-const Navbar1 = () => {
+const Navbar1 = ({history}) => {
   const StyledBadge = withStyles((theme) => ({
     badge: {
       right: -3,
@@ -24,6 +24,12 @@ const Navbar1 = () => {
   const { userInfo } = userLogin
 
   const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     if(userInfo){
+//         history.push("/")
+//     }
+// }, [userInfo])
 
   const logoutHandler = () => {
     dispatch(logout())
@@ -56,6 +62,9 @@ const Navbar1 = () => {
                                 <NavDropdown title="Profile" id='username'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>User Details</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to='/userorder'>
+                                        <NavDropdown.Item>User Order</NavDropdown.Item>
                                     </LinkContainer>
 
                                     <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>

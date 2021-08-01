@@ -15,7 +15,8 @@ import { ToastContainer } from 'react-toastify'
 import ScrollToTop from './components/ScrollToTop'
 import LoginScreen from './components/forms/LoginScreen'
 import RegisterScreen from './components/forms/RegisterScreen'
-
+import ProfileScreen from './components/ProfileScreen'
+import UserOrder from './components/UserOrder'
 
 const App = () => {
   return (
@@ -31,6 +32,8 @@ const App = () => {
       <Route exact path="/contactus" component={ContactUs}/>
       <Route exact path="/login" component={LoginScreen}/>
       <Route exact path="/register" component={RegisterScreen}/>
+      <Route exact path="/profile" component={ProfileScreen}/>
+      <Route exact path="/userorder" component={UserOrder}/>
       <Route path="/menu/products/:id" component={ProductScreen}/>
       <Route component={Error}/>
     </Switch>

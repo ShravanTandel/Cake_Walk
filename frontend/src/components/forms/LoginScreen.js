@@ -54,10 +54,11 @@ const LoginScreen=({location, history})=>{
                 <ErrorIcon />
                 {error}
               </Message>}
+              <form onSubmit = {submitHandler}>
                 <TextField label='Email' placeholder='Enter username' value = {email} onChange = {(e) => setEmail(e.target.value) } fullWidth required/><br></br><br></br>
                 <TextField label='Password' placeholder='Enter password' value = {password} onChange = {(e) => setPassword(e.target.value) } type='password' fullWidth required/>
                 <br></br><br></br>
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} onClick = {submitHandler} fullWidth>Sign in</Button><br></br>
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button><br></br>
                 <Typography >
                      <Link to = "/" >
                         Forgot password ?
@@ -69,6 +70,7 @@ const LoginScreen=({location, history})=>{
                        Sign Up
                     </Link>
                 </Typography>
+                </form>
                 </Grid>
         </Grid>
     )

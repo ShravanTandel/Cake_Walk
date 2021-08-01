@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Message from "./LoaderAndError/Message";
 import { Link, NavLink } from "react-router-dom";
@@ -11,6 +11,13 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch()
+
+  const [ address, setAddress ] = useState("")
+  const [ phone, setPhone ] = useState("")
+
+  const orderSubmitHandler = () => {
+    console.log(address, phone)
+  }
 
   const removeItemFromCart = (id) => {
         dispatch(removeFromCart(id));
@@ -83,14 +90,14 @@ const Cart = () => {
                       </li>
                       <li className="list-group-item">
                           <strong>Your Address: </strong><br />
-                          <textarea rows="4" cols="30" ></textarea>
+                          <textarea rows="4" cols="30" value = {address} onChange = {(e) => setAddress(e.target.value)} required></textarea>
                       </li>
                       <li className="list-group-item">
                           <strong>Phone: </strong>
-                          <input type="text" width="3000px"/>
+                          <input type="text" width="3000px" value = {phone} onChange = {(e) => setPhone(e.target.value)} required/>
                       </li>
                       <li className="list-group-item">
-                          <button className="btn btn-dark" disabled={ cartItems.length === 0} >Place Order</button>
+                          <button className="btn btn-dark" disabled={ cartItems.length === 0} onClick = {orderSubmitHandler} >Place Order</button>
                       </li>
                   </ul>
               </div>

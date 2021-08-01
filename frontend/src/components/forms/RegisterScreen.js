@@ -43,17 +43,15 @@ const RegisterScreen=({location, history})=>{
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if(username == "" || password == "" || email == "")
-        {
-            setMessage("Enter all fields")
-        }
-        else if(password != confirmPassword)
+        if(password !== confirmPassword)
         {
             setMessage("Password do not match")
         }
         else
         {
+            console.log(username, password, email)
             dispatch(Register(username, email, password))
+            setMessage('')
         }
     }
     return(
@@ -72,18 +70,20 @@ const RegisterScreen=({location, history})=>{
                 <ErrorIcon />
                 {error}
               </Message>}
+              <form onSubmit = {submitHandler}>
                 <TextField label='Username' placeholder='Enter username' value = {username} onChange = {(e) => setUsername(e.target.value)} fullWidth required/><br></br><br></br>
                 <TextField label='Email' placeholder='Enter email' value = {email} onChange = {(e) => setEmail(e.target.value) } fullWidth required/><br></br><br></br>
                 <TextField label='Password' placeholder='Enter password' value = {password} onChange = {(e) => setPassword(e.target.value) } type='password' fullWidth required/><br></br><br></br>
                 <TextField label='Confirm Password' placeholder='Enter confirm password' value = {confirmPassword} onChange = {(e) => setConfirmPassword(e.target.value) } type='password' fullWidth required/>
                 <br></br><br></br>
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} onClick = {submitHandler} fullWidth>Sign Up</Button><br></br>
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign Up</Button><br></br>
                 <Typography > Do you have an account ?
                      <Link to = 
                      {redirect ? `/login?redirect=${redirect}` : `/login`} >
                        Sign in
                     </Link>
                 </Typography>
+            </form>
                 </Grid>
         </Grid>
     )
