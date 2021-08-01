@@ -45,7 +45,7 @@ class Order(models.Model):
     totalprice = models.IntegerField(null=False, blank=False)
     address = models.TextField(null=False, blank=False)
     phone = models.CharField(max_length=13, null=False, blank=False)
-    isDelivered = models.BooleanField(null=True, blank=True)
+    deliveryStatus = models.TextField(null=True, blank=True)
     createdOn = models.DateTimeField(auto_now_add=True)
     deliveriedOn = models.DateTimeField(auto_now_add=False, null=True, blank=False)
 
