@@ -58,15 +58,19 @@ const Navbar1 = ({history}) => {
                 <LinkContainer to="/contactus">
                   <Nav.Link>Contact</Nav.Link>
                 </LinkContainer>
+                {
+                   userInfo ? (
+                    <LinkContainer to='/userorder'>
+                                        <Nav.Link>My Orders</Nav.Link>
+                                    </LinkContainer>
+                   ):""
+                }
+
                 {userInfo ? (
                                 <NavDropdown title="Profile" id='username'>
                                     <LinkContainer to='/profile'>
                                         <NavDropdown.Item>User Details</NavDropdown.Item>
                                     </LinkContainer>
-                                    <LinkContainer to='/userorder'>
-                                        <NavDropdown.Item>User Order</NavDropdown.Item>
-                                    </LinkContainer>
-
                                     <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
 
                                 </NavDropdown>

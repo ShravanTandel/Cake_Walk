@@ -7,7 +7,7 @@ import { removeFromCart } from "../actions/cartActions";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-const Cart = () => {
+const Cart = ({history}) => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch()
@@ -17,6 +17,7 @@ const Cart = () => {
 
   const orderSubmitHandler = () => {
     console.log(address, phone)
+    history.push("/userorder")
   }
 
   const removeItemFromCart = (id) => {
@@ -84,6 +85,7 @@ const Cart = () => {
                 )}
               </div>
               <div className="col-md-4">
+                <form onSubmit = {orderSubmitHandler}>
                   <ul className="list-group">
                       <li className="list-group-item" style={{ backgroundColor: "black", color: "white" }}>
                           <h1 style={{ backgroundColor: "black", color: "white" }}><>Total Price:</>{ cartItems.reduce((acc, item) => acc + item.price, 0)}</h1>
@@ -97,9 +99,10 @@ const Cart = () => {
                           <input type="text" width="3000px" value = {phone} onChange = {(e) => setPhone(e.target.value)} required/>
                       </li>
                       <li className="list-group-item">
-                          <button className="btn btn-dark" disabled={ cartItems.length === 0} onClick = {orderSubmitHandler} >Place Order</button>
+                          <button type = "submit" className="btn btn-dark" disabled={ cartItems.length === 0} >Place Order</button>
                       </li>
                   </ul>
+                  </form>
               </div>
             </div>
           </div>
