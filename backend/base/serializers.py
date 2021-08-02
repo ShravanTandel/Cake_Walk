@@ -1,12 +1,24 @@
+from django.db.models import fields
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Product, Pricing, Order, OrderItem
+from .models import Product, Pricing, Order, OrderItem, Category
 from rest_framework_simplejwt.tokens import RefreshToken
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
 class ProductSerializer(serializers.ModelSerializer):
+    category = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Product
         fields = '__all__'
+    
+    def get_category(self, obj):
+        category = obj.category
+        serializer = CategorySerializer(category, many=False)
+        return serializer.data
 
 class PricingSerializer(serializers.ModelSerializer):
     class Meta:
