@@ -31,6 +31,10 @@ const ProductScreen = ({ match }) => {
   const quantity = [1, 2, 3, 4, 5];
   const [ qty, setQty ] = useState(0);
 
+  const padding = {
+    padding : "5px 30px 5px 5px"
+  }
+
   const sizeChange = (e) => {
     setSize(e.target.value);
     const pricingObject = pricing.find((pricingO) => {
@@ -144,6 +148,7 @@ const ProductScreen = ({ match }) => {
                             className="form-select"
                             value={size}
                             onChange={sizeChange}
+                            style = { padding }
                           >
                             <option></option>
                             {pricing.map((x) => (
@@ -167,6 +172,7 @@ const ProductScreen = ({ match }) => {
                             className="form-select"
                             value={qty}
                             onChange={quantityChange}
+                            style = { padding }
                           >
                             <option></option>
                             {quantity.map((x) => (

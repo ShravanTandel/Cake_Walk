@@ -17,7 +17,7 @@ import LoginScreen from './components/forms/LoginScreen'
 import RegisterScreen from './components/forms/RegisterScreen'
 import ProfileScreen from './components/ProfileScreen'
 import UserOrder from './components/UserOrder'
-
+import OrderScreen from './components/OrderScreen'
 const App = () => {
   return (
     <>
@@ -33,6 +33,7 @@ const App = () => {
       <Route exact path="/login" component={LoginScreen}/>
       <Route exact path="/register" component={RegisterScreen}/>
       <Route exact path="/profile" component={ProfileScreen}/>
+      <Route exact path="/orders/:id" component={OrderScreen}/>
       <Route exact path="/userorder" component={UserOrder}/>
       <Route path="/menu/products/:id" component={ProductScreen}/>
       <Route component={Error}/>

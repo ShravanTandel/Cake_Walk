@@ -57,10 +57,11 @@ class OrderItem(models.Model):
     price = models.IntegerField(null=False, blank=False)
     quantity = models.IntegerField(null=False, blank=False)
     size = models.DecimalField(max_digits=5, null=False, decimal_places=1, blank=False)
-    product = models.CharField(max_length=300,null=False, blank=False)
+    productname = models.CharField(max_length=300,null=True, blank=True)
+    image = models.ImageField(null=True, blank = True)
 
     def __str__(self):
-        return self.product
+        return self.productname
 
 
 

@@ -25,7 +25,7 @@ const Cart = ({history}) => {
 
     useEffect(() => {
       if (success) {
-          history.push(`/${order.id}`)
+          history.push(`orders/${order.id}`)
           dispatch({ type: ORDER_CREATE_RESET })
       }
   }, [success, history])

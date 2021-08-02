@@ -61,13 +61,6 @@ def getUsers(request):
     serializer = UserProfileSerializer(users, many=True)
     return Response(serializer.data)
 
-# @api_view(['GET'])
-# @permission_classes([IsAdminUser])
-# def getUserById(request, pk):
-#     user = User.objects.get(id=pk)
-#     serializer = UserProfileSerializer(user, many=False)
-#     return Response(serializer.data)
-
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def updateUserProfile(request):
