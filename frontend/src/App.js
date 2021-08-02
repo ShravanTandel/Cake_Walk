@@ -9,7 +9,7 @@ import Navbar1 from './components/Navbar1'
 import { Switch, Route } from 'react-router'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import ContactUs from './components/ContactUs'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 import ProductScreen from './components/Products/ProductScreen'
 import { ToastContainer } from 'react-toastify'
 import ScrollToTop from './components/ScrollToTop'
@@ -39,7 +39,6 @@ const App = () => {
       <Route component={Error}/>
     </Switch>
     <ToastContainer />
-    <Footer />
     </>
   )
 }

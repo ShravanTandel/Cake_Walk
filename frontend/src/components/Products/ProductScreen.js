@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addToCart } from "../../actions/cartActions";
 import ErrorIcon from "@material-ui/icons/Error";
+import Footer from "../Footer";
 
 const ProductScreen = ({ match }) => {
   const { id } = useParams();
@@ -200,6 +201,7 @@ const ProductScreen = ({ match }) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

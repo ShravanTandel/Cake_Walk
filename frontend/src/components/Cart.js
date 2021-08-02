@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { createOrder } from "../actions/orderActions";
 import { useEffect } from "react";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
+import Footer from "./Footer";
 
 const Cart = ({history}) => {
   const cart = useSelector((state) => state.cart);
@@ -128,6 +129,7 @@ const Cart = ({history}) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
