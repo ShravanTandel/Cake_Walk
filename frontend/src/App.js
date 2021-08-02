@@ -18,6 +18,7 @@ import RegisterScreen from './components/forms/RegisterScreen'
 import ProfileScreen from './components/ProfileScreen'
 import UserOrder from './components/UserOrder'
 import OrderScreen from './components/OrderScreen'
+import UserListScreen from './components/UserListScreen'
 const App = () => {
   return (
     <>
@@ -36,6 +37,7 @@ const App = () => {
       <Route exact path="/orders/:id" component={OrderScreen}/>
       <Route exact path="/userorder" component={UserOrder}/>
       <Route path="/menu/products/:id" component={ProductScreen}/>
+      <Route path="/admin/users/" component={UserListScreen}/>
       <Route component={Error}/>
     </Switch>
     <ToastContainer />
