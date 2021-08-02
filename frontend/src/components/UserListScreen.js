@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
+// import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from './LoaderAndError/Loader'
@@ -12,7 +12,7 @@ import { listUsers } from '../actions/userActions'
 import ErrorIcon from "@material-ui/icons/Error";
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
-import EditIcon from '@material-ui/icons/Edit';
+// import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { deleteUser } from '../actions/userActions'
 
@@ -68,7 +68,6 @@ function UserListScreen({ history }) {
                                     <th>NAME</th>
                                     <th>EMAIL</th>
                                     <th>ADMIN</th>
-                                    <th>EDIT</th>
                                     <th>DELETE</th>
                                 </tr>
                             </thead>
@@ -84,14 +83,14 @@ function UserListScreen({ history }) {
                                         ) : (
                                                 <ClearIcon style={{ color: 'red' }} />
                                             )}</td>
-
+{/* 
                                         <td>
                                             <LinkContainer to={`/admin/user/${user.id}/edit`}>
                                                 <Button variant='light' className='btn-sm'>
                                                     <EditIcon />
                                                 </Button>
                                             </LinkContainer>
-                                        </td>
+                                        </td> */}
 
                                         <td>
                                             <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(user.id)}>
