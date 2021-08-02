@@ -79,6 +79,20 @@ const Navbar1 = ({history}) => {
                                         <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
                                     </LinkContainer>
                                 )}
+                {userInfo && userInfo.isAdmin ? (
+                                <NavDropdown title="Admin" id='username'>
+                                    <LinkContainer to='/admin/users/'>
+                                        <NavDropdown.Item>User Details</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to='/admin/products/'>
+                                        <NavDropdown.Item>Products</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <LinkContainer to='/admin/orders/'>
+                                        <NavDropdown.Item>Orders</NavDropdown.Item>
+                                    </LinkContainer>
+
+                                </NavDropdown>
+                            ) : ""}
                 <LinkContainer to="/cart">
                   <Nav.Link>
                     <StyledBadge badgeContent={ cartItems.length } color="secondary">
