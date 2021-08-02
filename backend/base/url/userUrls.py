@@ -9,5 +9,5 @@ urlpatterns = [
     # path('<str:pk>/', views.getUserById, name='user'),
     path('', views.getUsers, name='users'),
     path('register/', views.userRegister, name='usersregister'),
-    path('deleteUser/<int:pk>', views.deleteUser, name='deleteuser'),
+    path('deleteUser/<str:pk>/', views.deleteUser, name='deleteuser'),
 ]
