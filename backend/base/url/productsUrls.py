@@ -5,4 +5,5 @@ from base.view import productsViews as views
 urlpatterns = [
     path('', views.getProducts, name = "getProducts"),
     path('<int:id>', views.getProduct, name = "getProduct"),
+    path('deleteProduct/<str:pk>/', views.deleteProduct, name = "deleteproduct"),
 ]

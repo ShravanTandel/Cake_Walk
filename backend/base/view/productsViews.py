@@ -34,3 +34,10 @@ def getPricing(request, product):
     pricing = Pricing.objects.filter(product=product)
     serializer = PricingSerializer(pricing, many=True)
     return Response(serializer.data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAdminUser])
+def deleteProduct(request, pk):
+    product = Product.objects.get(id = pk)
+    product.delete()
+    return Response("Product Deleted")
