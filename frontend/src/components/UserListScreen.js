@@ -14,6 +14,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { deleteUser } from '../actions/userActions'
 
 function UserListScreen({ history }) {
 
@@ -25,8 +26,8 @@ function UserListScreen({ history }) {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    // const userDelete = useSelector(state => state.userDelete)
-    // const { success: successDelete } = userDelete
+    const userDelete = useSelector(state => state.userDelete)
+    const { success: successDelete } = userDelete
 
 
     useEffect(() => {
@@ -36,15 +37,14 @@ function UserListScreen({ history }) {
             history.push('/login')
         }
 
-    }, [dispatch, history, userInfo])
+    }, [dispatch, history, successDelete, userInfo])
 
 
     const deleteHandler = (id) => {
 
-        // if (window.confirm('Are you sure you want to delete this user?')) {
-        //     dispatch(deleteUser(id))
-        // }
-        console.log(id)
+        if (window.confirm('Are you sure you want to delete this user?')) {
+            dispatch(deleteUser(id))
+        }
     }
 
     return (
