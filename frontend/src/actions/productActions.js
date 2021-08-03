@@ -18,6 +18,10 @@ import {
     GET_CATEGORY_REQUEST,
     GET_CATEGORY_SUCCESS,
     GET_CATEGORY_FAIL,
+
+    PRODUCT_CREATE_REQUEST,
+    PRODUCT_CREATE_SUCCESS,
+    PRODUCT_CREATE_FAIL,
 } from '../constants/productConstants'
 
 import axios from 'axios'
@@ -154,6 +158,56 @@ export const getCategoryItems = () => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: GET_CATEGORY_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+  }
+
+export const createProduct = ({ categoryItem, name, description, offer, available, image }) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: PRODUCT_CREATE_REQUEST
+        })
+  
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const formData = new FormData()
+
+        formData.append("category", categoryItem)
+        formData.append("name", name)
+        formData.append("description", description)
+        formData.append("offer", offer)
+        formData.append("available", available)
+        formData.append("image", image)
+
+        // console.log(categoryItem, name, description, offer, available, image)
+  
+        const config = {
+            headers: {
+                'Content-type': 'multipart/form-data',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+  
+        const { data } = await axios.post(
+            `/api/products/createProduct/`,
+            formData,
+            config,
+        )
+  
+        dispatch({
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: data
+        })
+  
+  
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_CREATE_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,

@@ -11,6 +11,7 @@ import { getCategoryItems } from "../actions/productActions";
 import { Row, Col } from "react-bootstrap";
 import Footer from "./Footer";
 import { Form, Button } from "react-bootstrap";
+import { createProduct } from "../actions/productActions";
 
 const CreateProductScreen = ({ location, history }) => {
   //   const classes = useStyle();
@@ -44,7 +45,8 @@ const CreateProductScreen = ({ location, history }) => {
     dispatch(getCategoryItems());
     if(image !== "")
     {
-        
+        // console.log(categoryItem, name, description, offer, available, image)
+        dispatch(createProduct({ categoryItem, name, description, offer, available, image }))
     }
   }, [dispatch, image]);
 
@@ -71,6 +73,7 @@ const CreateProductScreen = ({ location, history }) => {
                   <Form.Label>Category</Form.Label><br></br>
                   <div style = {{ width: "1000px", }}>
                   <select value = {categoryItem} onChange = {(e) => setCategoryItem(e.target.value)} required>
+                      <option selected = "selected" >Choose Category</option>
                     {
                         category.map(categoryOne => (
                             <option key = {categoryOne.id} value={categoryOne.id}>{categoryOne.name}</option>
