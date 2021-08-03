@@ -1,5 +1,5 @@
-from backend.base.serializers import CategorySerializer
-from backend.base.models import Category
+from base.serializers import CategorySerializer
+from base.models import Category
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import serializers

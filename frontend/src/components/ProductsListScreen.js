@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
+import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from './LoaderAndError/Loader'
 import Message from './LoaderAndError/Message'
@@ -14,7 +14,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { deleteUser } from '../actions/userActions'
-import { listProducts } from '../actions/productActions'
+import { deleteProduct, listProducts } from '../actions/productActions'
 
 function ProductsListScreen({ history }) {
 
@@ -26,8 +26,8 @@ function ProductsListScreen({ history }) {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const userDelete = useSelector(state => state.userDelete)
-    const { success: successDelete } = userDelete
+    const productDelete = useSelector(state => state.productDelete)
+    const { success: successDelete } = productDelete
 
 
     useEffect(() => {
@@ -42,9 +42,13 @@ function ProductsListScreen({ history }) {
 
     const deleteHandler = (id) => {
 
-        if (window.confirm('Are you sure you want to delete this user?')) {
-            dispatch(deleteUser(id))
+        if (window.confirm('Are you sure you want to delete this product?')) {
+            dispatch(deleteProduct(id))
         }
+    }
+
+    const createProductHandler = () => {
+        history.push("/admin/createProduct/")
     }
 
     return (
@@ -52,7 +56,17 @@ function ProductsListScreen({ history }) {
         <div className="container-fuild nav_bg">
           <div className="row">
             <div className="col-10 mx-auto">
-            <h1>Users</h1>
+            <Row className='align-items-center'>
+                <Col>
+                    <h1>Products</h1>
+                </Col>
+
+                <Col className='text-right'>
+                    <Button className='my-3' onClick={createProductHandler}>
+                        Create Product
+                    </Button>
+                </Col>
+            </Row>
             {loading
                 ? (<Loader />)
                 : error
