@@ -51,6 +51,7 @@ def userRegister(request):
 @permission_classes([IsAuthenticated])
 def getUserProfile(request):
     user = request.user
+    print(user)
     serializer = UserProfileSerializer(user, many=False)
     return Response(serializer.data)
 

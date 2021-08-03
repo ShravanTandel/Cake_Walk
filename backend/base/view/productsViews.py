@@ -1,3 +1,5 @@
+from backend.base.serializers import CategorySerializer
+from backend.base.models import Category
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework import serializers
@@ -10,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from base.models import Pricing, Product
 from django.contrib.auth.models import User
 
-from base.serializers import ProductSerializer, PricingSerializer
+from base.serializers import ProductSerializer, PricingSerializer, createProductSerializer
 
 
 from django.contrib.auth.hashers import make_password
@@ -41,3 +43,21 @@ def deleteProduct(request, pk):
     product = Product.objects.get(id = pk)
     product.delete()
     return Response("Product Deleted")
+
+@api_view(['POST'])
+@permission_classes([IsAdminUser])
+def createProduct(request):
+    serializer = createProductSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def getCategory(request):
+    category = Category.objects.all()
+    serializer = CategorySerializer(category, many = True)
+    return Response(serializer.data)
+
+    
