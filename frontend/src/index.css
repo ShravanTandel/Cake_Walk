@@ -81,6 +81,22 @@ body{
     text-align: center;
 }
 
+select {
+    display: block;
+width: 300px;
+padding: .75rem 1.5rem;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5;
+color: #55595c;
+background-color: #f7f7f9;
+background-clip: padding-box;
+border: 0 solid #ced4da;
+appearance: none;
+border-radius: 0;
+transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 #header .animated{
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }

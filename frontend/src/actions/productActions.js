@@ -123,7 +123,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     }
   }
 
-export const getCategory = () => async (dispatch, getState) => {
+export const getCategoryItems = () => async (dispatch, getState) => {
     try {
         dispatch({
             type: GET_CATEGORY_REQUEST
