@@ -3,7 +3,7 @@ import { Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "./LoaderAndError/Loader";
 import Message from "./LoaderAndError/Message";
-import { getOrderDetails } from "../actions/orderActions";
+import { getOrderDetails, orderDelivery } from "../actions/orderActions";
 import ErrorIcon from "@material-ui/icons/Error";
 
 
@@ -22,6 +22,9 @@ import { Button } from "react-bootstrap";
 function OrderScreen({ match, history }) {
 
   const [ delivery, setDelivery ] = useState("");
+
+  const orderStatus = useSelector((state) => state.orderDeliveryReducer)
+  const { loading: orderLoading, error: orderError, success: successStatus } = orderStatus;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,10 +64,14 @@ const useStyles = makeStyles((theme) => ({
 
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
-  }, [dispatch]);
+    if(!userInfo)
+    {
+      history.push("/login/")
+    }
+  }, [dispatch, successStatus, userInfo]);
 
   const deliveryStatusUpdateHandler = ( id, delivery ) => {
-
+      dispatch(orderDelivery(id, delivery))
   }
 
   return loading ? (

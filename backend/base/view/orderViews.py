@@ -85,3 +85,11 @@ def getOrders(request):
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data)
 
+@api_view(['PUT'])
+@permission_classes([IsAdminUser])
+def deliveryUpdate(request, pk):
+    order = Order.objects.get(id = pk)
+    order.deliveryStatus = request.data["delivery"]
+    order.save()
+    return Response("Updated deliveryStatus")
+
