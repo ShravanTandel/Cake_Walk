@@ -87,7 +87,7 @@ const Navbar1 = ({history}) => {
                                     <LinkContainer to='/admin/products/'>
                                         <NavDropdown.Item>Products</NavDropdown.Item>
                                     </LinkContainer>
-                                    <LinkContainer to='/admin/orders/'>
+                                    <LinkContainer to='/admin/orderList/'>
                                         <NavDropdown.Item>Orders</NavDropdown.Item>
                                     </LinkContainer>
 

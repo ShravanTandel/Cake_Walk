@@ -16,8 +16,12 @@ import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Footer from "./Footer";
 
+import { Button } from "react-bootstrap";
+
 
 function OrderScreen({ match, history }) {
+
+  const [ delivery, setDelivery ] = useState("");
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,8 +49,6 @@ const useStyles = makeStyles((theme) => ({
   const orderId = match.params.id;
   const dispatch = useDispatch();
 
-  const [sdkReady, setSdkReady] = useState(false);
-
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, error, loading } = orderDetails;
 
@@ -60,6 +62,10 @@ const useStyles = makeStyles((theme) => ({
   useEffect(() => {
     dispatch(getOrderDetails(orderId));
   }, [dispatch]);
+
+  const deliveryStatusUpdateHandler = ( id, delivery ) => {
+
+  }
 
   return loading ? (
     <Loader />
@@ -94,7 +100,8 @@ const useStyles = makeStyles((theme) => ({
                   <p>
                     <strong>Shipping: </strong>
                     {order.address},
-                  </p>
+                  </p><br />
+                  <Message messagetype = "success" >{order.deliveryStatus}</Message>
                 </ListGroup.Item>
 
                 <ListGroup.Item>
@@ -132,10 +139,28 @@ const useStyles = makeStyles((theme) => ({
               </ListGroup>
               </Card>
             </Col>
-            <Col md={6} l>
-                <div className= "d-flex justify-content-center mt-4 mb-4">
-                    <h1>Update</h1>
+            <Col md={6}>
+                <div className= "d-flex justify-content-center mt-2 mb-2">
+                <h1 style={{ backgroundColor: "black", color: "white", padding: "10px"}}><>Total Price:</>{ order.totalprice }</h1>
                 </div>
+                <br />
+                {
+                  userInfo && userInfo.isAdmin ? (
+                    <div className= "d-flex justify-content-center mb-2">
+                    <select value = { delivery } onChange = {(e) => setDelivery(e.target.value) } >
+                      <option value = "Yet to confirm" >Yet to confirm</option>
+                      <option value = "Order confirmed" >Order confirmed</option>
+                      <option value = "Order preparing" >Order preparing</option>
+                      <option value = "Out for delivery" >Out for delivery</option>
+                      <option value = "Order deliveried" >Order deliveried</option>
+                    </select>
+                    <Button type="submit" variant="primary" onClick = { () => deliveryStatusUpdateHandler(order.id, delivery) } >
+                  Update
+                </Button>
+                    </div>
+                  ) : ""
+                }
+                    <h1 className= "d-flex justify-content-center mt-2">Update</h1>
 
                 <div className="d-flex justify-content-center">
                 <Stepper
